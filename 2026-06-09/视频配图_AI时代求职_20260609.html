@@ -1,0 +1,419 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>AI时代求职·视频配图</title>
+<style>
+  @import url('https://fonts.googleapis.com/css2?family=Noto+Sans+SC:wght@300;400;500;700;900&display=swap');
+
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+
+  body {
+    background: #0a0a0a;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 40px;
+    padding: 40px 20px;
+    font-family: 'Noto Sans SC', -apple-system, BlinkMacSystemFont, sans-serif;
+  }
+
+  .card {
+    width: 960px;
+    height: 540px;
+    border-radius: 20px;
+    position: relative;
+    overflow: hidden;
+    flex-shrink: 0;
+    box-shadow: 0 20px 60px rgba(0,0,0,0.5);
+  }
+
+  /* ── Card 1: 三层逻辑图 ── */
+  .card-1 {
+    background: linear-gradient(160deg, #0d1117 0%, #161b22 40%, #0d1117 100%);
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    padding: 50px 70px;
+  }
+
+  .card-1 .title {
+    font-size: 36px;
+    font-weight: 900;
+    color: #e6c46c;
+    letter-spacing: 6px;
+    margin-bottom: 8px;
+  }
+  .card-1 .subtitle {
+    font-size: 16px;
+    color: rgba(255,255,255,0.4);
+    letter-spacing: 4px;
+    margin-bottom: 45px;
+  }
+
+  .layer-row {
+    display: flex;
+    width: 100%;
+    justify-content: space-between;
+    gap: 24px;
+  }
+
+  .layer {
+    flex: 1;
+    background: rgba(255,255,255,0.03);
+    border: 1px solid rgba(255,255,255,0.08);
+    border-radius: 14px;
+    padding: 28px 22px;
+    position: relative;
+    transition: all 0.3s;
+  }
+  .layer .layer-num {
+    font-size: 13px;
+    font-weight: 700;
+    letter-spacing: 3px;
+    margin-bottom: 14px;
+  }
+  .layer .layer-title {
+    font-size: 19px;
+    font-weight: 700;
+    color: #fff;
+    margin-bottom: 10px;
+    line-height: 1.4;
+  }
+  .layer .layer-desc {
+    font-size: 13px;
+    color: rgba(255,255,255,0.5);
+    line-height: 1.7;
+  }
+
+  .l1 .layer-num { color: #58a6ff; }
+  .l2 .layer-num { color: #e6c46c; }
+  .l3 .layer-num { color: #f78166; }
+
+  .l1 { border-top: 2px solid #58a6ff; }
+  .l2 { border-top: 2px solid #e6c46c; }
+  .l3 { border-top: 2px solid #f78166; }
+
+  .weave-line {
+    display: flex;
+    align-items: center;
+    gap: 16px;
+    margin-top: 36px;
+    padding: 16px 28px;
+    background: rgba(230,196,108,0.06);
+    border: 1px solid rgba(230,196,108,0.15);
+    border-radius: 10px;
+  }
+  .weave-line .dot {
+    width: 8px; height: 8px;
+    background: #e6c46c;
+    border-radius: 50%;
+  }
+  .weave-line .weave-text {
+    font-size: 15px;
+    color: rgba(255,255,255,0.7);
+    letter-spacing: 1px;
+  }
+  .weave-line .weave-highlight {
+    color: #e6c46c;
+    font-weight: 600;
+  }
+
+  /* ── Card 2: 数据统计 ── */
+  .card-2 {
+    background: linear-gradient(160deg, #0d1117 0%, #1a1f2b 100%);
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    padding: 50px 70px;
+  }
+
+  .card-2 .title-sm {
+    font-size: 14px;
+    color: rgba(255,255,255,0.35);
+    letter-spacing: 4px;
+    margin-bottom: 8px;
+  }
+  .card-2 .title-lg {
+    font-size: 28px;
+    font-weight: 900;
+    color: #fff;
+    letter-spacing: 3px;
+    margin-bottom: 40px;
+  }
+
+  .stats-grid {
+    display: flex;
+    gap: 32px;
+    width: 100%;
+  }
+
+  .stat-card {
+    flex: 1;
+    background: rgba(255,255,255,0.03);
+    border: 1px solid rgba(255,255,255,0.06);
+    border-radius: 14px;
+    padding: 28px 20px;
+    text-align: center;
+  }
+  .stat-card .stat-num {
+    font-size: 48px;
+    font-weight: 900;
+    background: linear-gradient(135deg, #e6c46c, #f0d78c);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+    line-height: 1.2;
+  }
+  .stat-card .stat-unit {
+    font-size: 18px;
+    color: rgba(255,255,255,0.5);
+    margin-left: 2px;
+  }
+  .stat-card .stat-label {
+    font-size: 14px;
+    color: rgba(255,255,255,0.45);
+    margin-top: 8px;
+    letter-spacing: 1px;
+  }
+
+  .stats-bottom {
+    display: flex;
+    gap: 24px;
+    margin-top: 24px;
+    width: 100%;
+  }
+
+  .stat-bar {
+    flex: 1;
+    background: rgba(255,255,255,0.03);
+    border: 1px solid rgba(255,255,255,0.06);
+    border-radius: 10px;
+    padding: 16px 20px;
+  }
+  .stat-bar .bar-label {
+    font-size: 12px;
+    color: rgba(255,255,255,0.35);
+    letter-spacing: 2px;
+    margin-bottom: 10px;
+  }
+  .stat-bar .bar-track {
+    height: 6px;
+    background: rgba(255,255,255,0.06);
+    border-radius: 3px;
+    overflow: hidden;
+    margin-bottom: 6px;
+  }
+  .stat-bar .bar-fill {
+    height: 100%;
+    border-radius: 3px;
+    background: linear-gradient(90deg, #e6c46c, #f0d78c);
+  }
+  .stat-bar .bar-value {
+    font-size: 13px;
+    color: rgba(255,255,255,0.55);
+  }
+  .bar-fill-1 { width: 28%; }
+  .bar-fill-2 { width: 35%; }
+  .bar-fill-3 { width: 18%; }
+
+  /* ── Card 3: 金句 ── */
+  .card-3 {
+    background: radial-gradient(ellipse at 50% 40%, #1a1f2e 0%, #0d1117 70%);
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    padding: 60px 80px;
+  }
+
+  .card-3 .quote-mark {
+    font-size: 80px;
+    color: rgba(230,196,108,0.2);
+    line-height: 0.3;
+    margin-bottom: 30px;
+  }
+  .card-3 .quote-line {
+    font-size: 30px;
+    font-weight: 700;
+    color: #fff;
+    line-height: 1.6;
+    letter-spacing: 3px;
+    text-align: center;
+  }
+  .card-3 .quote-highlight {
+    color: #e6c46c;
+    font-weight: 900;
+  }
+  .card-3 .gap-line {
+    margin: 24px 0;
+    width: 60px;
+    height: 2px;
+    background: rgba(230,196,108,0.4);
+  }
+  .card-3 .quote-sub {
+    font-size: 18px;
+    color: rgba(255,255,255,0.4);
+    letter-spacing: 4px;
+  }
+
+  /* ── Card 4: 收尾 ── */
+  .card-4 {
+    background: linear-gradient(180deg, #0d1117 0%, #111822 60%, #0d1117 100%);
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    padding: 60px 80px;
+    text-align: center;
+  }
+
+  .card-4 .river-line {
+    font-size: 32px;
+    font-weight: 300;
+    color: rgba(255,255,255,0.8);
+    letter-spacing: 4px;
+    line-height: 1.8;
+  }
+  .card-4 .river-highlight {
+    color: #e6c46c;
+    font-weight: 600;
+  }
+  .card-4 .river-divider {
+    width: 40px;
+    height: 1px;
+    background: rgba(255,255,255,0.2);
+    margin: 36px 0;
+  }
+  .card-4 .river-sub {
+    font-size: 15px;
+    color: rgba(255,255,255,0.3);
+    letter-spacing: 5px;
+  }
+
+  /* ── Decorative elements ── */
+  .noise {
+    position: absolute;
+    top: 0; left: 0; right: 0; bottom: 0;
+    opacity: 0.015;
+    background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noiseFilter'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noiseFilter)'/%3E%3C/svg%3E");
+    pointer-events: none;
+  }
+
+  /* ── Print styles ── */
+  @media print {
+    body { background: white; padding: 0; gap: 0; }
+    .card { page-break-after: always; box-shadow: none; }
+  }
+</style>
+</head>
+<body>
+
+<!-- ═══════ Card 1: 三层逻辑图 ═══════ -->
+<div class="card card-1">
+  <div class="noise"></div>
+  <div class="title">AI 时代 · 三层交织</div>
+  <div class="subtitle">THE THREE INTERWOVEN LAYERS</div>
+
+  <div class="layer-row">
+    <div class="layer l1">
+      <div class="layer-num">LAYER 01</div>
+      <div class="layer-title">AI 时代<br>社会形态思考</div>
+      <div class="layer-desc">物理世界更加分散<br>数据层面紧密相连<br>Leader 不会消失<br>大多数岗位不会被替代<br>效率在提高，成本在降低</div>
+    </div>
+    <div class="layer l2">
+      <div class="layer-num">LAYER 02</div>
+      <div class="layer-title">评论区<br>就业焦虑</div>
+      <div class="layer-desc">134 条求职评论<br>30+ 个不同专业<br>冷门专业的追问<br>"什么都能学"的谎言<br>缺的不是岗位，是方向感</div>
+    </div>
+    <div class="layer l3">
+      <div class="layer-num">LAYER 03</div>
+      <div class="layer-title">创业者<br>真实困惑</div>
+      <div class="layer-desc">责任怎么划分<br>权力如何下放<br>融资是泡沫吗<br>一单一单地赚钱<br>拒绝虚假繁荣</div>
+    </div>
+  </div>
+
+  <div class="weave-line">
+    <div class="dot"></div>
+    <div class="weave-text">交织点：AI 时代重新定义了 <span class="weave-highlight">"谁能干""怎么干""跟谁干"</span></div>
+    <div class="dot"></div>
+  </div>
+</div>
+
+<!-- ═══════ Card 2: 数据统计 ═══════ -->
+<div class="card card-2">
+  <div class="noise"></div>
+  <div class="title-sm">视频"评论区变成大型招聘会"数据</div>
+  <div class="title-lg">评论区画像</div>
+
+  <div class="stats-grid">
+    <div class="stat-card">
+      <div class="stat-num">134</div>
+      <div class="stat-label">总评论数</div>
+    </div>
+    <div class="stat-card">
+      <div class="stat-num">30<span class="stat-unit">+</span></div>
+      <div class="stat-label">涉及专业</div>
+    </div>
+    <div class="stat-card">
+      <div class="stat-num">82</div>
+      <div class="stat-label">去重有效评论</div>
+    </div>
+    <div class="stat-card">
+      <div class="stat-num">0</div>
+      <div class="stat-label">AI 相关评论</div>
+    </div>
+  </div>
+
+  <div class="stats-bottom">
+    <div class="stat-bar">
+      <div class="bar-label">冷门/非对口专业</div>
+      <div class="bar-track"><div class="bar-fill bar-fill-1"></div></div>
+      <div class="bar-value">23 条 — 最焦虑群体</div>
+    </div>
+    <div class="stat-bar">
+      <div class="bar-label">理工科方向迷茫</div>
+      <div class="bar-track"><div class="bar-fill bar-fill-2"></div></div>
+      <div class="bar-value">29 条 — 最大比例</div>
+    </div>
+    <div class="stat-bar">
+      <div class="bar-label">"什么都能学"系列</div>
+      <div class="bar-track"><div class="bar-fill bar-fill-3"></div></div>
+      <div class="bar-value">15 条 — 最高频话术</div>
+    </div>
+  </div>
+</div>
+
+<!-- ═══════ Card 3: 金句 ═══════ -->
+<div class="card card-3">
+  <div class="noise"></div>
+  <div class="quote-mark">"</div>
+  <div class="quote-line">
+    降低的是<span class="quote-highlight">工具的门槛</span>
+  </div>
+  <div class="quote-line">
+    不是<span class="quote-highlight">认知的门槛</span>
+  </div>
+  <div class="gap-line"></div>
+  <div class="quote-sub">AI 时代真正的稀缺：判断力 · 决策力 · 闭环能力</div>
+</div>
+
+<!-- ═══════ Card 4: 收尾 ═══════ -->
+<div class="card card-4">
+  <div class="noise"></div>
+  <div class="river-line">
+    你不是来找答案的人
+  </div>
+  <div class="river-line">
+    你是和我<br>
+    <span class="river-highlight">一起穿越同一条河流</span>的人
+  </div>
+  <div class="river-divider"></div>
+  <div class="river-sub">AI 时代 · 求职与创业 · 我们在同一条船上</div>
+</div>
+
+</body>
+</html>
